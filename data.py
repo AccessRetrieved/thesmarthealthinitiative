@@ -9,7 +9,7 @@ def load_file(filepath):
     return data
 
 def preprocess_data(data):
-    features = ['Population', 'Median_Age', 'Average_Income', 'Obseity_Rate', 'Smoking_Rate']
+    features = ['Population', 'Median_Age', 'Obesity_Rate', 'Smoking_Rate']
     
     scaler = StandardScaler()
     data[features] = scaler.fit_transform(data[features])
