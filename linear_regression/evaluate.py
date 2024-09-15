@@ -10,10 +10,11 @@ from data import *
 import numpy as np
 
 data = load_file('neighborhood_health_and_wellness.csv')
-X = data[['Average_Income']]
+features = ['Average_Income', 'Obesity_Rate', 'Smoking_Rate', 'Access_to_Gym', 'Number_of_Hospitals']
+X = data[features]
 y = data['Life_Expectancy']
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.99, random_state=42)
 model = joblib.load('life_expectancy_model.pkl')
 
 y_pred = model.predict(X_test)
@@ -35,9 +36,8 @@ print(f'Accuracy: {accuracy_perc:.2f}%')
 
 # output graph
 plt.figure(figsize=(10, 6))
-plt.scatter(X_test, y_test, color='blue', label='Actual Life Expectancy')
-plt.scatter(X_test, y_pred, color='red', label='Predicted Life Expectancy')
-plt.plot(X_test, y_pred, color='red', linewidth=1)
+plt.scatter(y_test, y_pred, color='blue', label='Predicted vs. Actual')
+plt.plot([y_test.min(), y_test.max()], [y_pred.min(), y_pred.max()], 'r--', linewidth=1)
 plt.title('Actual vs. Predicted Life Expectancy')
 plt.xlabel('Average Income')
 plt.ylabel('Life Expectancy')

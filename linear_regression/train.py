@@ -7,7 +7,8 @@ sys.path.append('../thesmarthealthinitiative')
 from data import *
 
 data = load_file('neighborhood_health_and_wellness.csv')
-X = data[['Average_Income']]
+features = ['Average_Income', 'Obesity_Rate', 'Smoking_Rate', 'Access_to_Gym', 'Number_of_Hospitals']
+X = data[features]
 y = data['Life_Expectancy']
 
 model = LinearRegression()
