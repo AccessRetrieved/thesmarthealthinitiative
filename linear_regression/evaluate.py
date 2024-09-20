@@ -14,7 +14,7 @@ features = ['Average_Income', 'Obesity_Rate', 'Smoking_Rate', 'Access_to_Gym', '
 X = data[features]
 y = data['Life_Expectancy']
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.99, random_state=42)
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 model = joblib.load('life_expectancy_model.pkl')
 
 y_pred = model.predict(X_test)
